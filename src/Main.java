@@ -2,6 +2,7 @@ import lesson1.Lesson1;
 import lesson2.Lesson2;
 import lesson3.Lesson3;
 import lesson4.Lesson4;
+import lesson5.Lesson5;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,12 +10,12 @@ public class Main {
         var lesson2 = new Lesson2();
         var lesson3 = new Lesson3();
         var lesson4 = new Lesson4();
+        var lesson5 = new Lesson5();
 
 //        lesson1.start();
 //        lesson2.start();
 //        lesson3.start();
-        lesson4.start();
+//        lesson4.start();
+        lesson5.start();
     }
-
-
 }
