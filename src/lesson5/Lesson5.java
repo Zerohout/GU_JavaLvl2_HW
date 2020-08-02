@@ -10,6 +10,6 @@ public class Lesson5 {
 
 
        syncVersion.start();
-       //joinThreadVersion.start();
+       joinThreadVersion.start();
    }
 }
