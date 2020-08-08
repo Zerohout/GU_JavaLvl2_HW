@@ -1,10 +1,8 @@
 package lesson7.AuthService;
 
 import lesson7.Client.ClientHandler;
-import lesson7.Helpers.ControlPanel;
 import lesson7.Message.Message;
 import lesson7.Message.MessageBuilder;
-import lesson7.Server.ServerHandler;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -15,17 +13,12 @@ import static lesson7.Message.MessageBuilder.*;
 import static lesson7.Helpers.ControlPanel.getCurrentServer;
 
 public class AuthService {
-    private ServerHandler server;
     private int clientIdleTime = 120;
     private int waitingClientStep = 20;
     private ArrayList<User> users;
     public static final String AUTH_SERVICE_NAME = "Auth_Service_1.0";
 
     private final Object monitor1 = new Object();
-
-    public AuthService(ServerHandler server) {
-        this.server = server;
-    }
 
     public void initUsers() {
         this.users = new ArrayList<>();

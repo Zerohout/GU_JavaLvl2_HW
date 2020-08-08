@@ -1,6 +1,5 @@
 package lesson7.Helpers;
 
-
 import lesson7.Client.ClientApp;
 import lesson7.Server.ServerApp;
 import lesson7.Server.ServerHandler;
@@ -15,6 +14,12 @@ public class ControlPanel extends JFrame {
     private JButton createClientBtn;
     private JButton openServerBtn;
     private JTextField serverPortTField;
+    private int port;
+    private static ServerHandler currentServer;
+
+    public ControlPanel() {
+        prepareGUI();
+    }
 
     public static ServerHandler getCurrentServer() {
         return currentServer;
@@ -22,15 +27,6 @@ public class ControlPanel extends JFrame {
 
     public static void setCurrentServer(ServerHandler currentServer) {
         ControlPanel.currentServer = currentServer;
-    }
-
-    private static ServerHandler currentServer;
-    private int port;
-
-
-
-    public ControlPanel() {
-        prepareGUI();
     }
 
     private boolean getAutoAuthChcBoxStatus() {
@@ -134,7 +130,6 @@ public class ControlPanel extends JFrame {
     }
 
     //endregion
-
     //endregion
 
     //region grid methods

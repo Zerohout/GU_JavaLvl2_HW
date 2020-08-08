@@ -70,14 +70,6 @@ public class Message {
     }
     //endregion
 
-    public void addRecipients(List<Sendable> recipients) {
-        this.recipients.addAll(recipients);
-    }
-
-    public void addRecipient(Sendable recipient) {
-        this.recipients.add(recipient);
-    }
-
     public void send() {
         for(var i = 0; i < recipients.size(); i++){
             if(recipients.get(i) == null) continue;
@@ -91,19 +83,6 @@ public class Message {
             }
             recipients.get(i).sendLocalMessage(this);
         }
-
-//        for (var recipient : getRecipients()) {
-//            if (recipient == null) continue;
-////            if(isSystem) {
-////                recipient.sendLocalMessage(this);
-////                continue;
-////            }
-//            if (isCommand && !isPrivate) {
-//                recipient.sendMessage(this);
-//                continue;
-//            }
-//            recipient.sendLocalMessage(this);
-//        }
     }
 
     public String getConnectedText() {

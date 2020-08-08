@@ -42,8 +42,6 @@ public abstract class ChatFrameBase extends JFrame {
     }
     //endregion
 
-
-
     protected abstract void sendMessage(String text);
 
     public void sendLocalMessage(String text) {

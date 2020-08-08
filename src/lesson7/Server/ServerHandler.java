@@ -70,7 +70,7 @@ public class ServerHandler implements Sendable {
     private void start() {
         try (ServerSocket server = new ServerSocket(this.port)) {
             this.serverSocket = server;
-            authService = new AuthService(this);
+            authService = new AuthService();
             authService.start();
             commandHandler = new ServerCommandHandler(this);
             serverApp.sendLocalMessage("Server started on port: " + port);
