@@ -1,18 +1,12 @@
 package lesson7.Message;
 
-import lesson7.AuthService.AuthService;
-import lesson7.Client.ClientHandler;
-import lesson7.Helpers.ChatFrameBase;
-import lesson7.Helpers.ControlPanel;
 import lesson7.Helpers.Sendable;
-import lesson7.Server.ServerHandler;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-import static lesson7.Helpers.ChatCommandsHelper.*;
 import static lesson7.Server.ServerHandler.*;
 import static lesson7.AuthService.AuthService.AUTH_SERVICE_NAME;
 
@@ -149,7 +143,6 @@ public class MessageBuilder {
         return out.toString();
     }
     //endregion
-
 
     public Message build() {
         return new Message(sendDate, sender, command, commandArgs, text, recipients, isSystem, isPrivate, isCommand);

@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.net.Socket;
 
 import static lesson7.Helpers.ChatCommandsHelper.END;
-import static lesson7.Message.MessageBuilder.connectWords;
 
 public class ClientHandler implements Sendable {
     transient private ServerHandler server;

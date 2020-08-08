@@ -40,6 +40,4 @@ public class ChatCommandsHelper {
             default -> "Unknown command";
         };
     }
-
-
 }
