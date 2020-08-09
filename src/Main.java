@@ -4,7 +4,7 @@ import lesson3.Lesson3;
 import lesson4.Lesson4;
 import lesson5.Lesson5;
 import lesson6.Lesson6;
-import lesson7.Lesson7;
+import lesson7_8.Lesson7;
 
 public class Main {
     public static void main(String[] args) {

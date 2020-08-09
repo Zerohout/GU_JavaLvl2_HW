@@ -1,10 +1,10 @@
-package lesson7.Server;
+package lesson7_8.Server;
 
-import lesson7.AuthService.AuthService;
-import lesson7.Client.ClientHandler;
-import lesson7.Helpers.Sendable;
-import lesson7.Message.Message;
-import lesson7.Message.MessageBuilder;
+import lesson7_8.AuthService.AuthService;
+import lesson7_8.Client.ClientHandler;
+import lesson7_8.Helpers.Sendable;
+import lesson7_8.Message.Message;
+import lesson7_8.Message.MessageBuilder;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -12,8 +12,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import static lesson7.Helpers.ChatCommandsHelper.*;
-import static lesson7.Message.MessageBuilder.*;
+import static lesson7_8.Helpers.ChatCommandsHelper.*;
+import static lesson7_8.Message.MessageBuilder.*;
 
 public class ServerHandler implements Sendable {
     private final int port;
@@ -26,6 +26,7 @@ public class ServerHandler implements Sendable {
     public final static String SERVER_NAME = "SERVER";
     private boolean isStopped;
     private MessageBuilder mb;
+    private boolean isSystemFlag;
 
     @Override
     public String getName() {
@@ -34,14 +35,6 @@ public class ServerHandler implements Sendable {
 
     public AuthService getAuthService() {
         return this.authService;
-    }
-
-    public HashSet<ClientHandler> getOnlineClients() {
-        return onlineClients;
-    }
-
-    public ArrayList<Sendable> getOnlineClientsArrList() {
-        return new ArrayList<>(onlineClients);
     }
 
     public static ClientHandler getClientByNickname(String nickname) {
@@ -103,10 +96,10 @@ public class ServerHandler implements Sendable {
     }
 
     //region sending messages
-    public synchronized void broadcastMessage(Message msg) {
-        mb.convertMsgToBuilder(msg).isSystem(true)
-                .setRecipients(new ArrayList<>(onlineClients)).addRecipients(this)
-                .build().send();
+    public synchronized void broadcastMessage(Message msg, boolean isSystem) {
+        mb.convertMsgToBuilder(msg).isSystem(isSystem)
+                .setRecipients(new ArrayList<>(onlineClients))
+                .addRecipients(this).build().sendLocal();
     }
 
     @Override
@@ -115,7 +108,8 @@ public class ServerHandler implements Sendable {
             commandHandler.serverCommandListener(msg);
             return;
         }
-        broadcastMessage(msg);
+
+        broadcastMessage(msg,false);
     }
 
     @Override
@@ -128,14 +122,14 @@ public class ServerHandler implements Sendable {
     public synchronized void subscribe(ClientHandler client) {
         notAuthClients.remove(client);
         onlineClients.add(client);
-        broadcastMessage(mb.reset().setServerSystemMessage(connectWords(client.getName(), "come in chat.")).build());
+        broadcastMessage(mb.reset().setServerSystemMessage(connectWords(client.getName(), "come in chat.")).build(),true);
     }
 
     public synchronized void unsubscribe(ClientHandler client) {
         onlineClients.remove(client);
         client.isAuth(false);
         addNotAuthClient(client);
-        broadcastMessage(mb.reset().setServerSystemMessage(connectWords(client.getName(), "left the chat.")).build());
+        broadcastMessage(mb.reset().setServerSystemMessage(connectWords(client.getName(), "left the chat.")).build(),true);
     }
 
     private void addNotAuthClient(ClientHandler client) {
@@ -153,7 +147,7 @@ public class ServerHandler implements Sendable {
         onlineClients.remove(client);
         notAuthClients.remove(client);
         if (client.isAuth()) {
-            broadcastMessage(mb.reset().setServerSystemMessage(connectWords(client.getName(), "left the chat")).build());
+            broadcastMessage(mb.reset().setServerSystemMessage(connectWords(client.getName(), "left the chat")).build(),true);
         } else {
             mb.reset().setServerSystemMessage(connectWords(client.getName(), "disconnected"))
                     .setRecipients(this).build().send();

@@ -1,4 +1,4 @@
-package lesson7.AuthService;
+package lesson7_8.AuthService;
 
 public class User {
     private String login;

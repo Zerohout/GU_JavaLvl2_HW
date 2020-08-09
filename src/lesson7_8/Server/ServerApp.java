@@ -1,16 +1,16 @@
-package lesson7.Server;
+package lesson7_8.Server;
 
-import lesson7.Helpers.ChatFrameBase;
-import lesson7.Helpers.ControlPanel;
-import lesson7.Message.MessageBuilder;
+import lesson7_8.Helpers.ChatFrameBase;
+import lesson7_8.Helpers.ControlPanel;
+import lesson7_8.Message.MessageBuilder;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import static lesson7.Helpers.ChatCommandsHelper.END;
-import static lesson7.Message.MessageBuilder.*;
+import static lesson7_8.Helpers.ChatCommandsHelper.END;
+import static lesson7_8.Message.MessageBuilder.*;
 
 
 public class ServerApp extends ChatFrameBase {

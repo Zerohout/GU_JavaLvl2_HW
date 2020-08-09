@@ -1,6 +1,6 @@
-package lesson7;
+package lesson7_8;
 
-import lesson7.Helpers.ControlPanel;
+import lesson7_8.Helpers.ControlPanel;
 
 public class Lesson7 {
     public void start(){

@@ -1,19 +1,19 @@
-package lesson7.Client;
+package lesson7_8.Client;
 
-import lesson7.AuthService.UserBuilder;
-import lesson7.Helpers.Sendable;
-import lesson7.Message.Message;
-import lesson7.AuthService.AuthService;
-import lesson7.Message.MessageBuilder;
-import lesson7.Server.ServerHandler;
-import lesson7.AuthService.User;
+import lesson7_8.AuthService.UserBuilder;
+import lesson7_8.AuthService.User;
+import lesson7_8.AuthService.AuthService;
+import lesson7_8.Helpers.Sendable;
+import lesson7_8.Server.ServerHandler;
+import lesson7_8.Message.MessageBuilder;
+import lesson7_8.Message.Message;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-import static lesson7.Helpers.ChatCommandsHelper.END;
+import static lesson7_8.Helpers.ChatCommandsHelper.END;
 
 public class ClientHandler implements Sendable {
     transient private ServerHandler server;
@@ -58,7 +58,7 @@ public class ClientHandler implements Sendable {
         if (msg.isSystem() || msg.isPrivate()) sendLocalMessage(msg);
         else if (!isAuth && !msg.getCommand().equals(END)) doAuthentication(msg);
         else if (msg.isCommand()) commandHandler.commandListener(msg);
-        else server.broadcastMessage(msg);
+        else server.broadcastMessage(msg, false);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class ClientHandler implements Sendable {
         }
     }
 
-    public void doAuthentication(Message msg) {
+    private void doAuthentication(Message msg) {
         authService.clientAuthentication(msg, this);
     }
 
