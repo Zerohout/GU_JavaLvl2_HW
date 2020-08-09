@@ -1,8 +1,8 @@
-package lesson7.Helpers;
+package lesson7_8.Helpers;
 
-import lesson7.Client.ClientApp;
-import lesson7.Server.ServerApp;
-import lesson7.Server.ServerHandler;
+import lesson7_8.Client.ClientApp;
+import lesson7_8.Server.ServerApp;
+import lesson7_8.Server.ServerHandler;
 
 import javax.swing.*;
 import java.awt.*;

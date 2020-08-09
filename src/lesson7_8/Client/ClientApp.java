@@ -1,7 +1,7 @@
-package lesson7.Client;
+package lesson7_8.Client;
 
-import lesson7.Helpers.ChatFrameBase;
-import lesson7.Message.MessageBuilder;
+import lesson7_8.Helpers.ChatFrameBase;
+import lesson7_8.Message.MessageBuilder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.net.Socket;
 
 import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
-import static lesson7.Helpers.ChatCommandsHelper.*;
-import static lesson7.Message.MessageBuilder.connectWords;
+import static lesson7_8.Helpers.ChatCommandsHelper.*;
+import static lesson7_8.Message.MessageBuilder.connectWords;
 
 public class ClientApp extends ChatFrameBase {
     private static int clientCounter;

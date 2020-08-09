@@ -1,6 +1,6 @@
-package lesson7.Helpers;
+package lesson7_8.Helpers;
 
-import lesson7.Message.Message;
+import lesson7_8.Message.Message;
 
 public interface Sendable {
     String getName();

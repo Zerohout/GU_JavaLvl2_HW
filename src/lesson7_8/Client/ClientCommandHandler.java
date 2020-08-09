@@ -1,16 +1,15 @@
-package lesson7.Client;
+package lesson7_8.Client;
 
-import lesson7.Message.Message;
-import lesson7.Message.MessageBuilder;
-import lesson7.Server.ServerHandler;
+import lesson7_8.Message.Message;
+import lesson7_8.Message.MessageBuilder;
+import lesson7_8.Server.ServerHandler;
 
 import java.io.IOException;
 
-import static lesson7.Helpers.ChatCommandsHelper.*;
-import static lesson7.Message.MessageBuilder.connectParts;
+import static lesson7_8.Helpers.ChatCommandsHelper.*;
+import static lesson7_8.Message.MessageBuilder.connectParts;
 
 public class ClientCommandHandler {
-
     private ClientHandler client;
     private ServerHandler server;
     private MessageBuilder mb;

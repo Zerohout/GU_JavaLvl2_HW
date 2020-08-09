@@ -1,14 +1,14 @@
-package lesson7.Message;
+package lesson7_8.Message;
 
-import lesson7.Helpers.Sendable;
+import lesson7_8.Helpers.Sendable;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
-import static lesson7.Server.ServerHandler.*;
-import static lesson7.AuthService.AuthService.AUTH_SERVICE_NAME;
+import static lesson7_8.Server.ServerHandler.*;
+import static lesson7_8.AuthService.AuthService.AUTH_SERVICE_NAME;
 
 public class MessageBuilder {
     private String sendDate = new SimpleDateFormat("dd/MM/yy_HH:mm:ss").format(new Date());

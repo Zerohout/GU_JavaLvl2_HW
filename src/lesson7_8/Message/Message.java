@@ -1,11 +1,10 @@
-package lesson7.Message;
+package lesson7_8.Message;
 
-import lesson7.Helpers.Sendable;
+import lesson7_8.Helpers.Sendable;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static lesson7.Message.MessageBuilder.connectParts;
+import static lesson7_8.Message.MessageBuilder.connectParts;
 
 public class Message {
     private String text;
@@ -81,6 +80,12 @@ public class Message {
                 recipients.get(i).sendMessage(this);
                 continue;
             }
+            recipients.get(i).sendLocalMessage(this);
+        }
+    }
+
+    public void sendLocal(){
+        for(var i = 0; i < recipients.size(); i++){
             recipients.get(i).sendLocalMessage(this);
         }
     }

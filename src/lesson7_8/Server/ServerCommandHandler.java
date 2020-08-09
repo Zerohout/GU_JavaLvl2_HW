@@ -1,14 +1,13 @@
-package lesson7.Server;
+package lesson7_8.Server;
 
-import lesson7.Message.Message;
-import lesson7.Message.MessageBuilder;
+import lesson7_8.Message.Message;
+import lesson7_8.Message.MessageBuilder;
 
-import static lesson7.Helpers.ChatCommandsHelper.*;
-import static lesson7.Message.MessageBuilder.*;
-import static lesson7.Server.ServerHandler.SERVER_NAME;
+import static lesson7_8.Helpers.ChatCommandsHelper.*;
+import static lesson7_8.Message.MessageBuilder.*;
+import static lesson7_8.Server.ServerHandler.SERVER_NAME;
 
 public class ServerCommandHandler {
-
     private ServerHandler server;
     private MessageBuilder mb;
 

@@ -1,26 +1,26 @@
-package lesson7.AuthService;
+package lesson7_8.AuthService;
 
-import lesson7.Client.ClientHandler;
-import lesson7.Message.Message;
-import lesson7.Message.MessageBuilder;
+import lesson7_8.Client.ClientHandler;
+import lesson7_8.Message.Message;
+import lesson7_8.Message.MessageBuilder;
 
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static lesson7.Helpers.ChatCommandsHelper.*;
-import static lesson7.Message.MessageBuilder.*;
-import static lesson7.Helpers.ControlPanel.getCurrentServer;
+import static lesson7_8.Helpers.ChatCommandsHelper.*;
+import static lesson7_8.Message.MessageBuilder.*;
+import static lesson7_8.Helpers.ControlPanel.getCurrentServer;
 
 public class AuthService {
+    public static final String AUTH_SERVICE_NAME = "Auth_Service_1.0";
+    private final Object monitor1 = new Object();
     private int clientIdleTime = 120;
     private int waitingClientStep = 20;
     private ArrayList<User> users;
-    public static final String AUTH_SERVICE_NAME = "Auth_Service_1.0";
+    private MessageBuilder mb;
 
-    private final Object monitor1 = new Object();
-
-    public void initUsers() {
+    private void initUsers() {
         this.users = new ArrayList<>();
         for (var i = 1; i <= 2; i++) {
             users.add(new UserBuilder().setLogin("login" + i).setPassword("pass" + i).setNickname("Client" + i).build());
@@ -28,6 +28,7 @@ public class AuthService {
     }
 
     public void start() {
+        mb = new MessageBuilder();
         sendMessageToServer("started and ready to work.");
         initUsers();
     }
@@ -67,7 +68,7 @@ public class AuthService {
         } else {
             client.setUser(user);
             client.isAuth(true);
-            new MessageBuilder().compositeMessage(connectWords(AUTH_OK, user.getNickname())).addRecipients(client).build().send();
+            mb.reset().compositeMessage(connectWords(AUTH_OK, user.getNickname())).setRecipients(client).build().send();
         }
     }
 
@@ -86,11 +87,11 @@ public class AuthService {
     }
 
     private void sendMessageToClient(String text, ClientHandler client) {
-        new MessageBuilder().setAuthSystemMessage(text).setRecipients(client).build().send();
+        mb.reset().setAuthSystemMessage(text).setRecipients(client).build().send();
     }
 
     private void sendMessageToServer(String text) {
-        new MessageBuilder().setAuthSystemMessage(text).setRecipients(getCurrentServer()).build().send();
+        mb.reset().setAuthSystemMessage(text).setRecipients(getCurrentServer()).build().send();
     }
 
     public User getUserByNickname(String nickname) {
@@ -144,11 +145,11 @@ public class AuthService {
 
         @Override
         public void run() {
-            if (client == null || !client.isOnline() || client.isAuth()) {
+            if (client == null || client.isAuth()) {
                 timer.cancel();
             } else {
                 if (timerCount >= clientIdleTime) {
-                    new MessageBuilder().compositeMessage(END).setRecipients(client).build().send();
+                    mb.reset().compositeMessage(END).setRecipients(client).build().send();
                     timer.cancel();
                 } else {
                     var text = String.format("""
